@@ -51,7 +51,7 @@ function SilentMessageToggle(chatBoxProps: {
     React.useEffect(() => {
         const listener: SendListener = (_, message) => {
             if (enabled) {
-                setEnabledValue(false);
+                if (!settings.store.persistState) setEnabledValue(false);
                 if (!message.content.startsWith("@silent ")) message.content = "@silent " + message.content;
             }
         };
